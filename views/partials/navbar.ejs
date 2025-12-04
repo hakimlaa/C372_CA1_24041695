@@ -1,0 +1,16 @@
+<nav class="navbar navbar-dark bg-dark px-3 mb-4">
+    <div class="d-flex gap-3">
+        <a href="/shopping" class="navbar-brand">🏠 Home</a>
+        <a href="/cart" class="navbar-brand">🛒 View Cart</a>
+        <a href="/orders" class="navbar-brand">📦 Order History</a>
+    </div>
+
+    <div class="text-white">
+        Welcome, <%= user ? user.username : "Guest" %> |
+        <% if (user) { %>
+            <a href="/logout" class="text-white">Logout</a>
+        <% } else { %>
+            <a href="/login" class="text-white">Login</a>
+        <% } %>
+    </div>
+</nav>

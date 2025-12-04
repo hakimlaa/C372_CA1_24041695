@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Orders</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+    <style>
+        body { background-color: #f7f9fc; }
+        .order-card {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .order-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-dark px-3">
+    <div>
+        <a href="/shopping" class="navbar-brand">🏠 Home</a>
+        <a href="/cart" class="navbar-brand">🛒 View Cart</a>
+        <a href="/orders" class="navbar-brand">📦 Order History</a>
+    </div>
+    <div class="text-white">
+        Welcome, <%= user.username %> (user) |
+        <a href="/logout" class="text-white">Logout</a>
+    </div>
+</nav>
+
+<div class="container mt-4">
+
+    <h1 class="mb-4 text-center">📦 Your Order History</h1>
+
+    <% if (orders.length === 0) { %>
+        <p class="text-center text-muted">You have no past orders.</p>
+    <% } %>
+
+    <% orders.forEach(order => { %>
+        <div class="order-card">
+            
+            <!-- Order header -->
+            <div class="order-title">
+                Order #<%= order.orderId %>
+            </div>
+
+            <hr>
+
+            <!-- Order items -->
+            <p><strong>Item:</strong></p>
+
+            <ul>
+                <li>
+                    <%= order.productName %>  
+                    — Qty: <%= order.quantity %>  
+                    — Price: $<%= order.price %>  
+                    — Subtotal: $<%= (order.price * order.quantity).toFixed(2) %>
+                </li>
+            </ul>
+
+        </div>
+    <% }) %>
+
+</div>
+
+</body>
+</html>
